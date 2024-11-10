@@ -1,0 +1,4 @@
+[database]
+folder="/Users/joafigu/data/eved"
+eved="eved.db"
+traj="eved_traj.db"
