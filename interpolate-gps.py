@@ -117,8 +117,6 @@ def main():
     traj_df = load_trajectories()
     traj_ids = traj_df["traj_id"].to_numpy()
 
-    # traj_ids = [233]
-
     update_schema()
 
     for traj_id in tqdm(traj_ids):
