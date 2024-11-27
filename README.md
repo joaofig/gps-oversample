@@ -30,6 +30,7 @@ the repetition of the GPS coordinates on all intermediate data packets between c
 The following picture illustrates this effect on the [Extended Vehicle Energy Dataset](https://ar5iv.labs.arxiv.org/html/2203.08630) (EVED).
 
 ![](./images/figure_1.png)
+
 **Figure 1**-Data from the EVED shows how often the GPS location repeats while the vehicle moves. (Image source: Author)
 
 It is usual to handle data, as depicted in Figure 1,
