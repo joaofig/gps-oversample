@@ -33,7 +33,7 @@ The following picture illustrates this effect on the [Extended Vehicle Energy Da
 
 **Figure 1**-Data from the EVED shows how often the GPS location repeats while the vehicle moves. (Image source: Author)
 
-It is usual to handle data, as depicted in Figure 1,
+It is usual to handle data, as depicted in **Figure 1**,
 using the latitude and longitude as keys when removing duplicate rows.
 This technique keeps an aggregate of all the other columns, typically the first-row value.
 However, it may drastically reduce the number of rows in the dataset, rendering the data less valuable.
@@ -43,3 +43,17 @@ We can interpolate the geographic locations of the interim records,
 increasing the resolution of the GPS sensor and improving the dataset quality.
 This repository illustrates
 how to perform the GPS location interpolation mentioned above using map information and the speed signal.
+
+
+# Installing
+This code uses the [uv](https://docs.astral.sh/uv/) tool to initialize the Python environment and install the required packages.
+Start by installing the tool before proceeding.
+
+
+# Running
+
+Run the main script using the following command line:
+
+```shell
+uv run interpolate-gps.py
+```

@@ -34,7 +34,9 @@ def insert_dead_reckon(locations: List[DeadReckon]) -> None:
     t = [p.t for p in locations]
     signal_ids = [p.signal_id for p in locations]
 
-    x = np.append([0.0], vec_haversine(lat[:-1], lon[:-1], lat[1:], lon[1:])).cumsum()
+    x = np.append([0.0],
+                  vec_haversine(lat[:-1], lon[:-1],
+                                lat[1:], lon[1:])).cumsum()
 
     speed = np.gradient(x, t)
     accel = np.gradient(speed, t)
@@ -124,7 +126,9 @@ def main():
 
         if polyline_str is not None and len(polyline_str):
             signals_df = load_trajectory_signals(int(traj_id))
-            unique_df = signals_df.drop_duplicates(subset=["match_latitude", "match_longitude"], keep="first")
+            unique_df = signals_df.drop_duplicates(subset=["match_latitude",
+                                                           "match_longitude"],
+                                                   keep="first")
             polyline = np.array(decode_polyline(polyline_str, order="latlon"))
 
             gps_segments = compute_gps_segments(unique_df, polyline)
@@ -132,10 +136,12 @@ def main():
             locations: List[DeadReckon] = []
             for gps_segment in gps_segments:
                 segment_dx = sum(gps_segment.distances)
+                seq_ini = gps_segment.points[0].seq
+                seq_end = gps_segment.points[-1].seq
 
                 # Extract the kinematics data for this segment
-                seg_df = signals_df[(signals_df["signal_id"] >= gps_segment.points[0].seq) &
-                                    (signals_df["signal_id"] <= gps_segment.points[-1].seq)]
+                seg_df = signals_df[(signals_df["signal_id"] >= seq_ini) &
+                                    (signals_df["signal_id"] <= seq_end)]
                 if seg_df.shape[0] > 1:
                     # Infer the point in-between using kinematics
                     dxs = integrate_speeds(seg_df)
